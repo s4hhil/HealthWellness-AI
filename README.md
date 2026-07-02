@@ -1,4 +1,4 @@
-# 🌟 HealthWellness AI - Multi-Agent Health Dashboard
+# 🌟 HealthWellness AI - Secure Multi-Agent Health & Wellness Ecosystem
 
 HealthWellness AI is a secure, full-stack local dashboard that tracks sleep patterns, daily habits, menstrual cycles, and secure medical files. It uses a **Python Flask backend**, a **glassmorphic HTML/CSS/JS frontend**, and a **Multi-Agent Orchestrator**.
 
