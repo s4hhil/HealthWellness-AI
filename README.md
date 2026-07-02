@@ -1,129 +1,126 @@
-# HealthWellness AI - Secure Multi-Agent Wellness System
+# 🌟 HealthWellness AI - Multi-Agent System & Dashboard
 
-HealthWellness AI is a modular, secure, and state-of-the-art full-stack wellness dashboard. The system integrates a **Python backend orchestrator** managing **10 specialized AI agents** that communicate via a **Model Context Protocol (MCP)** server to retrieve and update daily health records, and a premium **glassmorphic dark-theme SPA frontend dashboard** to visualize user metrics, track habits/sleep, and manage cycles.
+Welcome to **HealthWellness AI**, a secure, state-of-the-art full-stack dashboard designed to manage daily metrics, sleep structures, menstrual cycles, and secure medical records. 
 
----
-
-## 🚀 Key Architectural Concepts Applied
-
-### 1. ADK Multi-Agent System (`agents.py`)
-- **Intent-Based Orchestration**: The orchestrator routes general queries to appropriate agents based on semantic context or lets the user target agents directly.
-- **10 Specialized Agent Definitions**:
-  1. **Personal Health Assistant**: Interprets laboratory results and provides standard primary care guidance.
-  2. **Wellness Coach**: Provides fitness suggestions, goal milestones, and daily motivational statements.
-  3. **AI Health Companion**: Empathic conversational agent for active listening.
-  4. **Habit Tracker**: Logs and reviews daily stats (hydration, step counts, mindfulness meditation).
-  5. **Sleep Tracker**: Analyzes sleep cycles, quality, and sleep stages.
-  6. **Medical Records Manager**: Manages file lists and content reading with high protection boundaries.
-  7. **Nutrition Advisor**: Offers meal planning and calorie recommendations.
-  8. **Mental Wellness Assistant**: Conducts mood surveys and offers 4-7-8 breathing exercises.
-  9. **Productivity Planner**: Connects sleep scores to focus-hour optimization.
-  10. **Women's Wellness Module**: Provides period tracking, forecasts, symptom logs, mood trends, and phase recommendations.
-
-### 2. Model Context Protocol (MCP) Server (`mcp_server.py`)
-- Standardized MCP JSON-RPC protocol server exposing tools: `get_habits`, `log_habit`, `get_sleep_logs`, `log_sleep`, `get_cycle_data`, `log_cycle_event`, `log_symptom`, `log_mood`, `list_medical_records`, and `read_medical_record`.
-- Supports local direct execution context (zero latency) or hosting over HTTP on `localhost:3001` for external clients.
-
-### 3. Security Features (Validation + Safe Execution) (`security.py`)
-- **Path Traversal Shield**: Strictly verifies all filenames via regex bounds and checks that absolute paths resolve inside the sandbox directory (`data/records/`). Prevents `../../etc/passwd` or `..\..\app.py` escapes.
-- **Input Sanitization**: Rejects scripting payloads (HTML/JS code injections) to prevent XSS.
-- **Data Validation Schemas**: Rigidly validates data types, date formatting, and value boundaries for all database writes.
-
-### 4. Agent Skills & CLI Utility (`cli.py`)
-- Rich Python Command Line Interface enabling developers to list/read medical files, retrieve cycle predictions, log habits, and chat with specific agents directly from the console.
+Built using a **Python Flask backend** and a **premium glassmorphic HTML/CSS/JS frontend**, the system utilizes an **ADK (Agent Development Kit) Multi-Agent architecture** communicating with a local **Model Context Protocol (MCP)** server to process health data safely.
 
 ---
 
-## 📂 Project Structure
+## 🗺️ System Architecture
 
+The following diagram illustrates how the frontend dashboard, Flask server, ADK Orchestrator, and MCP server cooperate to fetch and log information securely:
+
+```mermaid
+graph TD
+    UI[HTML/CSS/JS Dashboard] <-->|REST API Requests| Flask[Flask App Server:3000]
+    Flask <-->|Orchestration & Routing| ADK[ADK Orchestrator]
+    ADK <-->|Local Tool Invocations| MCP[MCP Server Tools]
+    MCP <-->|File Sandboxing & Guards| Security[Security Layer]
+    Security <-->|JSON Database Read/Write| DB[(data/ folder)]
 ```
-Capstone Project/
-│
-├── app.py                  # Main Flask backend server (port 3000)
-├── mcp_server.py           # Model Context Protocol JSON-RPC Server (port 3001)
-├── agents.py               # ADK multi-agent registration, prompts, and orchestration
-├── security.py             # Security validator and directory traversal sandbox guards
-├── db.py                   # Secure JSON database module & mock data generator
-├── cli.py                  # CLI utility to run agents and test security
-│
-├── static/                 # Front-end Assets (HTML / CSS / JS)
-│   ├── index.html          # Dashboard Single Page Application
-│   ├── style.css           # Premium Glassmorphic design and CSS layouts
-│   └── main.js             # Front-end tab controllers, forms, and charts
-│
-└── data/                   # Secure Data Directory (auto-generated)
-    ├── habits.json         # Step count, hydration, and meditation logs
-    ├── sleep.json          # Total sleep, deep, REM logs
-    ├── cycle.json          # Menstrual period logs, symptoms checklist, mood logs
-    └── records/            # Directory containing secure mock medical records
-```
+
+---
+
+## ⚡ Core Concepts Implemented
+
+1. **ADK Multi-Agent System (`agents.py`)**: An intelligent routing orchestrator coordinates queries across **10 specialized AI agents** with unique prompts, reasoning parameters, and tool access scopes.
+2. **Model Context Protocol (MCP) Server (`mcp_server.py`)**: standardizes tool executions (`get_habits`, `log_habit`, `get_sleep_logs`, `log_sleep`, `get_cycle_data`, `log_cycle_event`, `log_symptom`, `log_mood`, `list_medical_records`, `read_medical_record`) via a JSON-RPC-style tool controller.
+3. **Sandbox Security Guards (`security.py`)**: Protects user medical records from directory traversal attacks (e.g. `../../app.py` escapes) by enforcing strict path resolution checks within sandboxed boundaries.
+4. **Agent CLI Skills (`cli.py`)**: A terminal command-line tool allowing developers to list/read medical records, check predicted cycles, update habits, and chat with agents directly.
+
+---
+
+## 🤖 The 10 Specialized AI Agents
+
+| Agent Name | Primary Responsibility | Associated MCP Tools |
+| :--- | :--- | :--- |
+| **Personal Health Assistant** | Reviews health results and explains standard lab metrics. | `read_medical_record` |
+| **Wellness Coach** | Evaluates active hydration, logs step milestones, and gives motivational support. | `get_habits`, `log_habit` |
+| **AI Health Companion** | Empathetic chat agent designed to check in on the user's general mood. | None (Heuristic chat) |
+| **Habit Tracker** | Manages daily water consumption, step counts, and mindfulness logs. | `get_habits`, `log_habit` |
+| **Sleep Tracker** | Analyzes sleep duration, deep/REM sleep, and bedtime health. | `get_sleep_logs`, `log_sleep` |
+| **Medical Records Manager** | Secures access to PDF/TXT lab documents, verifying safety credentials. | `list_medical_records`, `read_medical_record` |
+| **Nutrition Advisor** | Suggests macronutrient targets, recipe changes, and food logs. | `get_habits` |
+| **Mental Wellness Assistant** | Guides breathing routines and logs mood assessments. | `log_mood`, `get_cycle_data` |
+| **Productivity Planner** | Matches focus hours and daily scheduling with sleep quality logs. | `get_sleep_logs`, `get_habits` |
+| **Women's Wellness Module** | Forecasts cycle start dates, ovulation, and stage-specific wellness. | `get_cycle_data`, `log_cycle_event` |
+
+---
+
+## ♀️ Women's Wellness & Mental Check Modules
+
+### 🔮 Menstrual Cycle Predictor
+- Calculates the estimated **Next Period Start Date** based on the average cycle length (default: 28 days) from the last logged period.
+- Forecasts **Ovulation Date** (estimated at mid-cycle).
+- Identifies the current **Cycle Phase** (Menstrual, Follicular, Ovulatory, or Luteal) based on the days elapsed since the latest period, and prints tailored nutrition/exercise guidance.
+
+### 🧠 AI Mood Predictor Quiz
+Instead of manually selecting a mood, users take an interactive **3-Question Mood Quiz**:
+1. *Body Feel*: Energetic ⚡, Relaxed 🧘, Fatigued 😴, or Tense 😠.
+2. *Thoughts*: Optimistic 😊, Worrying 😰, Melancholy 😢, or Balanced 🧘.
+3. *Social Vibe*: Outgoing 😊, Quiet 🧘, Impatient 😠, or Withdrawn 😢.
+
+The system processes these parameters to predict the user's primary mood (e.g. *happy, calm, tired, anxious, irritable, sad, energetic*) and logs it alongside their energy level.
+
+---
+
+## 🛏️ Automated Sleep Cycle Estimation
+The sleep logger removes complex deep/REM sleep questions. The user only logs **Total Sleep Hours**, and the system automatically calculates:
+- **Deep Sleep**: ~20% of sleep duration.
+- **REM Sleep**: ~25% of sleep duration.
+- **Sleep Quality Score**: Evaluated using sleep curves (optimizing for 7-9 hours, applying penalties for sleep deprivation or oversleeping).
 
 ---
 
 ## 🛠️ Installation & Launch Guide
 
-### 1. Prerequisites
-- Python 3.8+ installed (tested on Python 3.13.1).
+Follow these steps to run the application locally on your machine:
 
-### 2. Install Dependencies
-Run the following command to install Flask and Flask-CORS:
+### 1. Install Python Dependencies
+Ensure Python 3.8+ is installed, then install Flask and CORS packages:
 ```bash
 pip install flask flask-cors
 ```
 
-### 3. Initialize the Database
-Generate default metrics and mock records:
+### 2. Initialize the Database
+Initialize directories and populate the databases with default logs and mock records:
 ```bash
 python db.py
 ```
 
-### 4. Start the Application
-Run the Flask server:
+### 3. Start the Web Server
+Launch the Flask backend server:
 ```bash
 python app.py
 ```
-Open a browser and navigate to **[http://localhost:3000](http://localhost:3000)**.
+
+### 4. Open the Dashboard
+Navigate to **[http://localhost:3000](http://localhost:3000)** in your web browser.
 
 ---
 
 ## 💻 CLI Commands (Skills / Tools Demo)
 
+Use the built-in terminal CLI (`cli.py`) to interact with agents and test security:
+
 ### Chat with the Agent Orchestrator:
 ```bash
-python cli.py chat -m "My joints are slightly sore, can you check my lab report?"
+python cli.py chat -m "Please check my blood report and tell me if anything is low"
 ```
 
-### List secure medical files:
-```bash
-python cli.py record list
-```
-
-### Safely read a medical record:
+### Read a Secure Medical Record:
 ```bash
 python cli.py record read -f "blood_report_2026.txt"
 ```
 
 ### Verify Traversal Blocking (Security test):
-Attempt to break out of the directory:
+Attempt to escape the sandbox using a parent directory path:
 ```bash
 python cli.py record read -f "../../app.py"
 ```
-*Output:* `[SECURITY BLOCK] MCP tool execution failed: Directory traversal or path injection detected.`
-
-### Get Cycle Predictions:
-```bash
-python cli.py cycle prediction
-```
+*Expected Output:* `[SECURITY BLOCK] MCP tool execution failed: Directory traversal or path injection detected.`
 
 ---
 
-## ♀️ Women's Wellness Module Details
-The system calculates cycle forecasts using the recorded period start dates:
-- **Predicted Next Period**: Predicted based on average cycle duration (default 28 days) relative to the latest period date.
-- **Estimated Ovulation**: Calculated as `start_date + (cycle_length / 2)` (mid-cycle estimation).
-- **Hormonal Cycle Phase Badge**: Analyzes today's day number in the cycle and assigns:
-  - *Menstrual Phase* (Day 1-5)
-  - *Follicular Phase* (Day 6-12)
-  - *Ovulatory Phase* (Day 13-16)
-  - *Luteal Phase* (Day 17-28)
-- **Mood and Energy Correlations**: Dynamically combines and sorts logged symptoms (cramps, fatigue, bloating) alongside energy (1-10) and mood ratings (happy, anxious, irritable) to trace wellness trends.
+## 🔒 Security Sandbox Verification
+In the **Medical Records** tab of the dashboard, you can test the sandbox protection live. Enter a path escape sequence (like `../../app.py`) in the tester input and click **Request Access**. The system will block the read operation, light up the security shield in red, and display a "CONTAINED" status message.
