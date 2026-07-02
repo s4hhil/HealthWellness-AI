@@ -1,0 +1,60 @@
+{
+    "cycle_length_default": 28,
+    "period_length_default": 5,
+    "period_logs": [
+        {
+            "start_date": "2026-05-04",
+            "end_date": "2026-05-08"
+        },
+        {
+            "start_date": "2026-06-01",
+            "end_date": "2026-06-05"
+        },
+        {
+            "start_date": "2026-06-29",
+            "end_date": "2026-07-03"
+        }
+    ],
+    "symptoms": [
+        {
+            "date": "2026-06-29",
+            "symptoms": [
+                "cramps",
+                "fatigue"
+            ],
+            "intensity": "moderate"
+        },
+        {
+            "date": "2026-06-30",
+            "symptoms": [
+                "headache",
+                "fatigue"
+            ],
+            "intensity": "mild"
+        },
+        {
+            "date": "2026-07-01",
+            "symptoms": [
+                "bloating"
+            ],
+            "intensity": "mild"
+        }
+    ],
+    "moods": [
+        {
+            "date": "2026-06-29",
+            "mood": "irritable",
+            "energy_level": 3
+        },
+        {
+            "date": "2026-06-30",
+            "mood": "anxious",
+            "energy_level": 4
+        },
+        {
+            "date": "2026-07-01",
+            "mood": "calm",
+            "energy_level": 6
+        }
+    ]
+}

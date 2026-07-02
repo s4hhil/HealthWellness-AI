@@ -1,0 +1,37 @@
+[
+    {
+        "date": "2026-06-28",
+        "duration_hours": 7.5,
+        "deep_sleep_hours": 1.8,
+        "rem_sleep_hours": 1.5,
+        "quality_score": 78
+    },
+    {
+        "date": "2026-06-29",
+        "duration_hours": 6.2,
+        "deep_sleep_hours": 1.1,
+        "rem_sleep_hours": 1.2,
+        "quality_score": 62
+    },
+    {
+        "date": "2026-06-30",
+        "duration_hours": 8.0,
+        "deep_sleep_hours": 2.1,
+        "rem_sleep_hours": 1.9,
+        "quality_score": 88
+    },
+    {
+        "date": "2026-07-01",
+        "duration_hours": 7.0,
+        "deep_sleep_hours": 1.5,
+        "rem_sleep_hours": 1.4,
+        "quality_score": 75
+    },
+    {
+        "date": "2026-07-02",
+        "duration_hours": 7.5,
+        "deep_sleep_hours": 1.5,
+        "rem_sleep_hours": 1.9,
+        "quality_score": 88
+    }
+]

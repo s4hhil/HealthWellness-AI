@@ -1,0 +1,21 @@
+HealthWellness AI - Secure Medical Records Manager
+Date: 2026-03-15
+Patient: Jane Doe
+
+LAB RESULTS - COMPLETE BLOOD COUNT (CBC):
+- Red Blood Cell (RBC) count: 4.5 M/uL (Normal)
+- White Blood Cell (WBC) count: 6.8 K/uL (Normal)
+- Hemoglobin: 13.8 g/dL (Normal)
+- Platelets: 250 K/uL (Normal)
+
+CHOLESTEROL PANEL:
+- Total Cholesterol: 185 mg/dL (Normal, < 200)
+- LDL: 98 mg/dL (Optimal, < 100)
+- HDL: 65 mg/dL (Excellent, > 50)
+- Triglycerides: 110 mg/dL (Normal, < 150)
+
+VITAMIN LEVELS:
+- Vitamin D-25 Hydroxy: 28 ng/mL (Borderline low, target > 30)
+- Vitamin B12: 450 pg/mL (Normal)
+
+RECOMMENDATION: Consider daily Vitamin D3 supplement of 1000 IU. Keep up the balanced diet.

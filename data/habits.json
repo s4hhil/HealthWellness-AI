@@ -1,0 +1,44 @@
+{
+    "2026-06-28": {
+        "hydration": 2200,
+        "steps": 8400,
+        "meditation": 15,
+        "completed": [
+            "hydration",
+            "steps",
+            "meditation"
+        ]
+    },
+    "2026-06-29": {
+        "hydration": 1800,
+        "steps": 6200,
+        "meditation": 0,
+        "completed": [
+            "hydration"
+        ]
+    },
+    "2026-06-30": {
+        "hydration": 2500,
+        "steps": 10500,
+        "meditation": 20,
+        "completed": [
+            "hydration",
+            "steps",
+            "meditation"
+        ]
+    },
+    "2026-07-01": {
+        "hydration": 1200,
+        "steps": 4300,
+        "meditation": 10,
+        "completed": []
+    },
+    "2026-07-02": {
+        "hydration": 2000.0,
+        "steps": 2541,
+        "meditation": 5.0,
+        "completed": [
+            "hydration"
+        ]
+    }
+}

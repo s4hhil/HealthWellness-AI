@@ -1,0 +1,20 @@
+HealthWellness AI - Secure Medical Records Manager
+Date: 2025-10-12
+Patient: Jane Doe
+
+ANNUAL PHYSICAL EXAMINATION REPORT:
+- Age: 28
+- Height: 5'6" (167.6 cm)
+- Weight: 138 lbs (62.6 kg)
+- BMI: 22.3 (Normal range)
+- Blood Pressure: 118/76 mmHg (Normal)
+- Heart Rate: 72 bpm (Regular rhythm)
+
+PHYSICAL NOTES:
+Lungs clear to auscultation. Abdomen soft, non-tender. Reflexes intact. Eye and ear exams normal.
+Patient reports moderate occupational stress and average sleep of 6.5 hours.
+
+PLAN:
+1. Focus on stress management via mindfulness or yoga.
+2. Target 7.5+ hours of sleep nightly.
+3. Next routine physical checkup in one year.

@@ -1,10 +1,22 @@
-node_modules/
-client/node_modules/
-server/node_modules/
-dist/
-client/dist/
-.vite/
-coverage/
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Databases / local storage (allow mock data folder structure, but ignore local updates if preferred)
+# data/
+
+# Environments
 .env
-*.log
+.venv
+env/
+venv/
+ENV/
+
+# OS files
 .DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/

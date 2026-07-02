@@ -1,0 +1,13 @@
+HealthWellness AI - Secure Medical Records Manager
+Date: 2026-05-12
+Dr. Sarah Lin, MD - General Medicine
+Rx Prescription
+
+Patient: Jane Doe
+
+Medication: Ergocalciferol (Vitamin D2) 1.25 mg (50,000 USP Units)
+Dosage: 1 capsule by mouth once weekly for 8 weeks.
+Refills: 0
+
+Instructions: Take with food (preferably high in healthy fats) to improve absorption.
+Notes: Indicated for borderline Vitamin D deficiency. Re-check Vitamin D levels in 3 months.

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HealthWellness AI - Multi-Agent Dashboard</title>
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" width="28" height="28" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                    </svg>
+                </div>
+                <h2>HealthWellness AI</h2>
+            </div>
+            
+            <nav class="nav-links">
+                <button class="nav-item active" data-tab="dashboard">
+                    <span class="icon">🏠</span> Dashboard
+                </button>
+                <button class="nav-item" data-tab="agents">
+                    <span class="icon">🤖</span> AI Agents Hub
+                </button>
+                <button class="nav-item" data-tab="womens-wellness">
+                    <span class="icon">♀️</span> Women's Wellness
+                </button>
+                <button class="nav-item" data-tab="habits-sleep">
+                    <span class="icon">👣</span> Habits & Sleep
+                </button>
+                <button class="nav-item" data-tab="records">
+                    <span class="icon">📂</span> Medical Records
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="security-badge">
+                    <span class="shield-icon">🛡️</span>
+                    <div>
+                        <p class="badge-title">Security Active</p>
+                        <p class="badge-subtitle">Strict Sandbox Mode</p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Body -->
+        <main class="main-content">
+            <!-- Top Navbar -->
+            <header class="top-navbar">
+                <div class="header-title">
+                    <h1>HealthWellness AI</h1>
+                    <span class="subtitle">ADK Multi-Agent Wellness System</span>
+                </div>
+                
+                <div class="status-indicators">
+                    <div class="indicator">
+                        <span class="dot green"></span>
+                        <span class="label">Server: Online</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="dot green"></span>
+                        <span class="label">MCP: Active</span>
+                    </div>
+                    <div class="indicator">
+                        <span class="dot green"></span>
+                        <span class="label">10 Agents: Armed</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Scrollable Panel -->
+            <div class="content-panel">
+                
+                <!-- TAB 1: DASHBOARD OVERVIEW -->
+                <section id="dashboard" class="tab-content active">
+                    <div class="welcome-banner">
+                        <div class="welcome-text">
+                            <h2>Welcome back, Jane! 👋</h2>
+                            <p>All core health agents are tracking and coordinating metrics in the background.</p>
+                        </div>
+                        <div class="wellness-score">
+                            <span class="score-val">84</span>
+                            <span class="score-lbl">Daily Health Score</span>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <!-- Card 1: Cycle Prediction Summary -->
+                        <div class="dash-card card-cycle">
+                            <h3>♀️ Cycle Predictor</h3>
+                            <div class="card-metric" id="dash-cycle-predicted">Loading...</div>
+                            <p class="card-desc" id="dash-cycle-phase">Determining current phase...</p>
+                            <button class="card-btn" onclick="switchTab('womens-wellness')">Cycle Details &rarr;</button>
+                        </div>
+
+                        <!-- Card 2: Habits Summary -->
+                        <div class="dash-card card-habits">
+                            <h3>👣 Daily Habits</h3>
+                            <div class="progress-bar-container">
+                                <div class="progress-info">
+                                    <span>Hydration</span>
+                                    <span id="dash-water-text">0/2500 ml</span>
+                                </div>
+                                <div class="progress-track"><div class="progress-fill" id="dash-water-fill" style="width: 0%"></div></div>
+                            </div>
+                            <div class="progress-bar-container">
+                                <div class="progress-info">
+                                    <span>Daily Steps</span>
+                                    <span id="dash-steps-text">0/10000</span>
+                                </div>
+                                <div class="progress-track"><div class="progress-fill" id="dash-steps-fill" style="width: 0%"></div></div>
+                            </div>
+                            <button class="card-btn" onclick="switchTab('habits-sleep')">Update Log &rarr;</button>
+                        </div>
+
+                        <!-- Card 3: Sleep Quality Summary -->
+                        <div class="dash-card card-sleep">
+                            <h3>🛏️ Sleep Quality</h3>
+                            <div class="card-metric" id="dash-sleep-score">0/100</div>
+                            <p class="card-desc" id="dash-sleep-duration">Total sleep: 0 hours</p>
+                            <button class="card-btn" onclick="switchTab('habits-sleep')">View Sleep Analysis &rarr;</button>
+                        </div>
+
+                        <!-- Card 4: Daily Health Companion Quote -->
+                        <div class="dash-card card-companion">
+                            <h3>🤖 Companion Check-in</h3>
+                            <div class="companion-bubble">
+                                <p class="quote-text" id="dash-companion-quote">"Loading motivational insight from your Wellness Coach..."</p>
+                            </div>
+                            <button class="card-btn" onclick="switchTab('agents')">Talk to Agents &rarr;</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 2: AI AGENTS HUB -->
+                <section id="agents" class="tab-content">
+                    <div class="chat-container">
+                        <div class="chat-header">
+                            <div class="chat-agent-info">
+                                <span class="agent-avatar">🤖</span>
+                                <div>
+                                    <h3 id="current-agent-display">ADK Multi-Agent System</h3>
+                                    <p class="agent-role" id="current-agent-role">Orchestrated routing across 10 security-isolated agent modules.</p>
+                                </div>
+                            </div>
+                            <div class="agent-selector-wrapper">
+                                <label for="agent-select">Target Agent:</label>
+                                <select id="agent-select" class="glass-select">
+                                    <option value="Auto-Detect">Auto-Detect (Orchestrator)</option>
+                                    <option value="Personal Health Assistant">Personal Health Assistant</option>
+                                    <option value="Wellness Coach">Wellness Coach</option>
+                                    <option value="AI Health Companion">AI Health Companion</option>
+                                    <option value="Habit Tracker">Habit Tracker</option>
+                                    <option value="Sleep Tracker">Sleep Tracker</option>
+                                    <option value="Medical Records Manager">Medical Records Manager</option>
+                                    <option value="Nutrition Advisor">Nutrition Advisor</option>
+                                    <option value="Mental Wellness Assistant">Mental Wellness Assistant</option>
+                                    <option value="Productivity Planner">Productivity Planner</option>
+                                    <option value="Women's Wellness Module">Women's Wellness Module</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Chat Messages Screen -->
+                        <div class="chat-messages" id="chat-messages">
+                            <!-- Messages populated dynamically -->
+                            <div class="chat-message system">
+                                <p>System initialized. Welcome to HealthWellness AI Chat. Type any wellness or record questions, or select a specific agent above.</p>
+                            </div>
+                        </div>
+
+                        <!-- Chat input bar -->
+                        <div class="chat-input-bar">
+                            <input type="text" id="chat-input" placeholder="Type your health question (e.g. 'check my blood report' or 'what cycle phase am I in?')..." autocomplete="off">
+                            <button id="chat-send" class="btn-send">Send ⚡</button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 3: WOMEN'S WELLNESS -->
+                <section id="womens-wellness" class="tab-content">
+                    <div class="module-title-wrapper">
+                        <h2>♀️ Women's Wellness Module</h2>
+                        <p class="module-desc">Cycle prediction forecasts, symptoms log, daily mood logs, and personalized stage recommendations.</p>
+                    </div>
+
+                    <div class="wellness-grid">
+                        <!-- Prediction & Phase Widget -->
+                        <div class="glass-card flex-col">
+                            <h3>🔮 Predicted Forecasts</h3>
+                            <div class="predictions-panel">
+                                <div class="prediction-row">
+                                    <span class="pred-label">Last Logged Period Start:</span>
+                                    <span class="pred-value" id="cycle-last-start">-</span>
+                                </div>
+                                <div class="prediction-row">
+                                    <span class="pred-label">Predicted Next Period:</span>
+                                    <span class="pred-value highlight-red" id="cycle-next-period">-</span>
+                                </div>
+                                <div class="prediction-row">
+                                    <span class="pred-label">Ovulation Forecast:</span>
+                                    <span class="pred-value highlight-gold" id="cycle-ovulation">-</span>
+                                </div>
+                                <div class="prediction-row">
+                                    <span class="pred-label">Current Cycle Phase:</span>
+                                    <span class="badge" id="cycle-phase-badge">-</span>
+                                </div>
+                            </div>
+                            <div class="phase-recommendation-box">
+                                <strong>Wellness Recommendation:</strong>
+                                <p id="cycle-wellness-recommendation">Loading your customized hormonal stage wellness report...</p>
+                            </div>
+                        </div>
+
+                        <!-- Period Logger Form -->
+                        <div class="glass-card">
+                            <h3>📅 Log Period Dates</h3>
+                            <form id="period-log-form" class="log-form">
+                                <div class="form-group">
+                                    <label for="period-start">Period Start Date:</label>
+                                    <input type="date" id="period-start" required class="glass-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="period-end">Period End Date (Optional):</label>
+                                    <input type="date" id="period-end" class="glass-input">
+                                </div>
+                                <button type="submit" class="btn-submit">Submit Period Log</button>
+                            </form>
+                            <div id="period-log-msg" class="form-message"></div>
+                        </div>
+
+                        <!-- Symptoms Logger -->
+                        <div class="glass-card">
+                            <h3>🤒 Symptom Tracker</h3>
+                            <form id="symptom-log-form" class="log-form">
+                                <div class="form-group">
+                                    <label for="symptom-date">Log Date:</label>
+                                    <input type="date" id="symptom-date" required class="glass-input">
+                                </div>
+                                <div class="symptoms-checklist">
+                                    <label class="checkbox-container">Cramps
+                                        <input type="checkbox" name="symptoms" value="cramps">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox-container">Headache
+                                        <input type="checkbox" name="symptoms" value="headache">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox-container">Fatigue
+                                        <input type="checkbox" name="symptoms" value="fatigue">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox-container">Bloating
+                                        <input type="checkbox" name="symptoms" value="bloating">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox-container">Nausea
+                                        <input type="checkbox" name="symptoms" value="nausea">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="checkbox-container">Mood Swings
+                                        <input type="checkbox" name="symptoms" value="mood_swings">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label for="symptom-intensity">Intensity:</label>
+                                    <select id="symptom-intensity" class="glass-select">
+                                        <option value="mild">Mild</option>
+                                        <option value="moderate">Moderate</option>
+                                        <option value="severe">Severe</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn-submit">Log Symptoms</button>
+                            </form>
+                            <div id="symptom-log-msg" class="form-message"></div>
+                        </div>
+
+                        <!-- Mood Profiler Quiz -->
+                        <div class="glass-card">
+                            <h3>🧠 AI Mood Predictor & Logger</h3>
+                            <form id="mood-quiz-form" class="log-form">
+                                <div class="form-group">
+                                    <label for="quiz-date">Log Date:</label>
+                                    <input type="date" id="quiz-date" required class="glass-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="quiz-energy">How does your body feel physically right now?</label>
+                                    <select id="quiz-energy" class="glass-select" required>
+                                        <option value="active">Energetic & Active ⚡</option>
+                                        <option value="relaxed">Relaxed & Comfortable 🧘</option>
+                                        <option value="fatigued">Tired & Exhausted 😴</option>
+                                        <option value="tense">Tense & Annoyed 😠</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quiz-mind">What is your dominant thoughts state today?</label>
+                                    <select id="quiz-mind" class="glass-select" required>
+                                        <option value="optimistic">Optimistic & Focused 😊</option>
+                                        <option value="worrying">Worrying & Anxious 😰</option>
+                                        <option value="melancholy">Melancholy & Unmotivated 😢</option>
+                                        <option value="balanced">Balanced & Centered 🧘</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="quiz-social">How is your social vibe and patience level?</label>
+                                    <select id="quiz-social" class="glass-select" required>
+                                        <option value="outgoing">Social & Outgoing (High patience) 😊</option>
+                                        <option value="quiet">Quiet & Selective (Normal patience) 🧘</option>
+                                        <option value="impatient">Impatient & Impulsive (Low patience) 😠</option>
+                                        <option value="withdrawn">Withdrawn & Silent (Avoids people) 😢</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn-submit">Predict & Log Mood 🔮</button>
+                            </form>
+                            <div id="mood-log-msg" class="form-message"></div>
+                        </div>
+
+                        <!-- Trend Correlations Widget -->
+                        <div class="glass-card span-two">
+                            <h3>📊 Cycle Mood & Symptom History Trends</h3>
+                            <div class="trend-wrapper">
+                                <div class="trend-table-container">
+                                    <table class="trend-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Mood</th>
+                                                <th>Energy</th>
+                                                <th>Logged Symptoms</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="trend-table-body">
+                                            <!-- Dynamically filled -->
+                                            <tr>
+                                                <td colspan="4" class="text-center">No trend logs entered.</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 4: HABITS & SLEEP -->
+                <section id="habits-sleep" class="tab-content">
+                    <div class="module-title-wrapper">
+                        <h2>👣 Habits & Sleep Logs</h2>
+                        <p class="module-desc">Monitor steps, hydration, deep meditation sessions, and evaluate night sleep structures.</p>
+                    </div>
+
+                    <div class="wellness-grid">
+                        <!-- Daily Habits Form -->
+                        <div class="glass-card">
+                            <h3>💧 Log Daily Habits</h3>
+                            <form id="habit-log-form" class="log-form">
+                                <div class="form-group">
+                                    <label for="habit-date">Date:</label>
+                                    <input type="date" id="habit-date" required class="glass-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="habit-water">Water Intake (ml):</label>
+                                    <input type="number" id="habit-water" min="0" max="6000" placeholder="e.g. 2000" class="glass-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="habit-steps">Daily Steps:</label>
+                                    <input type="number" id="habit-steps" min="0" max="80000" placeholder="e.g. 10000" class="glass-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="habit-meditation">Meditation (minutes):</label>
+                                    <input type="number" id="habit-meditation" min="0" max="300" placeholder="e.g. 15" class="glass-input">
+                                </div>
+                                <button type="submit" class="btn-submit">Submit Habit Metrics</button>
+                            </form>
+                            <div id="habit-log-msg" class="form-message"></div>
+                        </div>
+
+                        <!-- Sleep Logger Form -->
+                        <div class="glass-card">
+                            <h3>🛏️ Log Sleep Duration</h3>
+                            <form id="sleep-log-form" class="log-form">
+                                <div class="form-group">
+                                    <label for="sleep-date">Morning Wake Date:</label>
+                                    <input type="date" id="sleep-date" required class="glass-input">
+                                </div>
+                                <div class="form-group">
+                                    <label for="sleep-duration">Total Sleep Duration (hours):</label>
+                                    <input type="number" step="0.1" id="sleep-duration" required placeholder="e.g. 7.5" class="glass-input">
+                                </div>
+                                <p class="card-desc" style="font-style: italic; margin-top: 10px;">
+                                    *Note: HealthWellness AI will automatically calculate your sleep quality score, deep sleep, and REM sleep cycles based on your total sleep duration.*
+                                </p>
+                                <button type="submit" class="btn-submit">Log Sleep Stats</button>
+                            </form>
+                            <div id="sleep-log-msg" class="form-message"></div>
+                        </div>
+
+                        <!-- Sleep Log Table -->
+                        <div class="glass-card span-two">
+                            <h3>📊 Night Sleep Analysis History</h3>
+                            <div class="trend-table-container">
+                                <table class="trend-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Total Sleep</th>
+                                            <th>Deep Sleep</th>
+                                            <th>REM Sleep</th>
+                                            <th>Quality Score</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="sleep-table-body">
+                                        <!-- Dynamically filled -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 5: MEDICAL RECORDS -->
+                <section id="records" class="tab-content">
+                    <div class="module-title-wrapper">
+                        <h2>📂 Secure Medical Records Manager</h2>
+                        <p class="module-desc">Access reports safely sandbox-constrained inside local filesystem boundaries. Security alerts will trigger on path traversal attempts.</p>
+                    </div>
+
+                    <div class="records-grid">
+                        <!-- List & Read panel -->
+                        <div class="glass-card">
+                            <h3>🗃️ Available Medical Records</h3>
+                            <p class="section-instruction">Select a file below to view its contents securely:</p>
+                            <ul class="records-list" id="records-list-ul">
+                                <!-- Populated dynamically -->
+                            </ul>
+                            
+                            <div class="traversal-tester">
+                                <h4 class="test-title">🛡️ Security sandbox traversal test:</h4>
+                                <p class="test-desc">Type a path traversal filename (e.g., `../../app.py` or `..\..\db.py`) to verify path traversal guards.</p>
+                                <div class="tester-input-group">
+                                    <input type="text" id="traversal-file-input" placeholder="e.g. ../../app.py" class="glass-input-small">
+                                    <button id="traversal-btn" class="btn-test">Request Access</button>
+                                </div>
+                                <div id="traversal-alert-box" class="security-shield-status idle">
+                                    <span class="shield-badge-icon">🛡️</span> <span id="traversal-msg">Sandbox status: Shield idle.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Record Viewer -->
+                        <div class="glass-card span-two">
+                            <div class="viewer-header">
+                                <h3 id="record-title-display">Document Viewer</h3>
+                                <span class="badge secure-lock">Encrypted Endpoint</span>
+                            </div>
+                            <div class="doc-viewer" id="record-content-display">
+                                Select a medical record to load content. Content is read under strict path traversal prevention guards.
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
